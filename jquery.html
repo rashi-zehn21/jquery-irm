@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download button</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="start">
+            <div class="num">
+                <span id="percent"></span>
+                <span></span>
+            </div>
+            <button class="b_loading">
+                <p>Download</p>
+                <div class="b_progress"></div>
+            </button>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/button.js"></script>
+    <script type="text/javascript">
+        $('.b_loading').click(function (event) {
+            $(this).css('cursor', 'default');
+            $(this).addClass('b_loading_anim');
+            $('p').addClass('b_text');
+            $('.num').css('visibility', 'visible');
+
+        });
+
+        $('.b_loading').on('transitionend', function () {
+            $('.b_progress').css('visibility', 'visible').css('width', '300px');
+        });
+
+        $('.b_progress').on('transitionend', function () {
+            $(this).css('opacity', '0').css('transition', '1s');
+            $('.b_loading').css('background-color', '#252639').css('top', '220px').css('height', '60px');
+            $('p').removeClass('b_text');
+            $('.b_loading').css('pointer-events', 'none');
+            $('p').addClass('b_w_text').text('Open File');
+            $('.num').css('visibility', 'hidden');
+        })
+    </script>
+
+</body>
+
+</html>
